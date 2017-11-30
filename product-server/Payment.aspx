@@ -13,13 +13,13 @@
      Email:<asp:TextBox  TextMode="Email" ID="Email" runat="server" EnableViewState="False" ViewStateMode="Disabled"   required="required"></asp:TextBox>
        
         <br />
-      Shipping Date: <asp:Calendar ID="Calendar1" runat="server" EnableViewState="False"  ViewStateMode="Disabled"  ></asp:Calendar>
-        <asp:CustomValidator id="CustomValidator1" runat="server" Display="Dynamic" ErrorMessage="please click a day"  OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
+      Shipping Date: <asp:Calendar ID="Calendar1" runat="server"   ></asp:Calendar>
+        <asp:CustomValidator id="CustomValidator1" runat="server" Display="Dynamic"  ErrorMessage="please click a day"  OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
        <br />
       Credit   <asp:CheckBox ID="ChBCredit" runat="server" AutoPostBack="true" EnableViewState="False"  ViewStateMode="Disabled" OnCheckedChanged="ChBCredit_CheckedChanged" />
       Phone   <asp:CheckBox ID="CHbPhone" runat="server" AutoPostBack="true" EnableViewState="False"  ViewStateMode="Disabled" OnCheckedChanged="CHbPhone_CheckedChanged" />
          <asp:PlaceHolder ID="PH" runat="server"></asp:PlaceHolder>
 
         <asp:CustomValidator ID="CBV" runat="server" ErrorMessage="Must select 1"  ClientValidationFunction="CBV" > </asp:CustomValidator>
-        <asp:Button ID="Button1" runat="server" Text="Submit"  />
+        <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click"  />
      </asp:Content>
