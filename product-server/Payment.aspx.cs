@@ -8,12 +8,15 @@ using System.Web.UI.WebControls;
 
 public partial class Payment : System.Web.UI.Page
 {
+    CustomValidator Cvalidator = new CustomValidator();
+    TextBox TB2 = new TextBox();
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
-    {
+    { 
         if (Calendar1.SelectedDate == null || Calendar1.SelectedDate == new DateTime(0001, 1, 1, 0, 0, 0))// not click any date
             args.IsValid = false;
         else
@@ -32,6 +35,7 @@ public partial class Payment : System.Web.UI.Page
             PH.Controls.Add(LBL1);
             DropDownList DDL = new DropDownList();
             DDL.EnableViewState = false;
+            
             DDL.ID = "DDL";
             for (int i = 1; i <= 12; i++)
             {
@@ -41,11 +45,16 @@ public partial class Payment : System.Web.UI.Page
                 DDL.Items.Add(li);
             }
 
+            RequiredFieldValidator validator1 = new RequiredFieldValidator();
+            validator1.ControlToValidate = "DDL";
+            validator1.ForeColor = System.Drawing.Color.Red;
+            validator1.Text = "Must Choose Number Of Payments";
             PH.Controls.Add(DDL);
-            var validator = new RequiredFieldValidator();
-            validator.ControlToValidate = "DDL";
-            validator.Text = "Must Choose Number Of Payments";
-            PH.Controls.Add(validator);
+            PH.Controls.Add(validator1);
+
+
+
+            RequiredFieldValidator validator2 = new RequiredFieldValidator();
 
             Label LBL = new Label();
             LBL.Text = "Credit Card Number:";
@@ -54,34 +63,54 @@ public partial class Payment : System.Web.UI.Page
             TB.ID = "CCTb";
             TB.EnableViewState = false;
             PH.Controls.Add(TB);
-            validator.ControlToValidate = "CCTb";
-            validator.Text = "Must Enter Credit Card Number";
-            PH.Controls.Add(validator);
+            validator2.ControlToValidate = "CCTb";
+            validator2.ForeColor = System.Drawing.Color.Red;
+            validator2.Text = "Must Enter Credit Card Number";
+            PH.Controls.Add(validator2);
+
+
+
+            RequiredFieldValidator validator3 = new RequiredFieldValidator();
 
             Label LBL2 = new Label();
             LBL2.Text = "T.Z";
             PH.Controls.Add(LBL2);
-            TextBox TB2 = new TextBox();
             TB2.ID = "TZTB2";
             TB2.EnableViewState = false;
             PH.Controls.Add(TB2);
-            var Cvalidator = new CustomValidator();
-            Cvalidator.ClientValidationFunction = "TZvalidation";
-            validator.ControlToValidate = "TZTB2";
-            validator.ErrorMessage = "";
+            validator3.ControlToValidate = "TZTB2";
+            validator3.ForeColor = System.Drawing.Color.Red;
+            //Cvalidator.ClientValidationFunction = "TZvalidation";
+            validator3.ErrorMessage = "must enter 9 digits";
+             PH.Controls.Add(validator3);
 
-            PH.Controls.Add(validator);
 
+
+
+           
+            RequiredFieldValidator validator4 = new RequiredFieldValidator();
             Label LBL3 = new Label();
             LBL3.Text = "Credit Type";
             PH.Controls.Add(LBL3);
-            TextBox TB3 = new TextBox();
-            TB3.ID = "CtTB3";
-           TB3.EnableViewState = false;
-            PH.Controls.Add(TB3);
-            validator.ControlToValidate = "CtTB3";
-            validator.Text = "Must Enter Credit Type";
-            PH.Controls.Add(validator);
+
+            DropDownList DDL2 = new DropDownList();
+            DDL2.EnableViewState = false;
+            string[] names = new string []{"master card","visa","american express" } ;
+            DDL2.ID = "DDL2";
+            for (int i = 0; i < names.Length; i++)
+            {
+                ListItem li = new ListItem();
+                li.Value =names[i].ToString();
+
+                DDL2.Items.Add(li);
+            }
+             
+            PH.Controls.Add(DDL2);
+            validator4.ControlToValidate = "DDL2";
+            validator4.ForeColor= System.Drawing.Color.Red;
+            validator4.Text = "Must Enter Credit Type";
+
+            PH.Controls.Add(validator4);
 
 
 
@@ -94,40 +123,55 @@ public partial class Payment : System.Web.UI.Page
     }
 
     protected void TZvalidation(object sender, ServerValidateEventArgs args) {
-     
-        int[] tznum = new int[9];
-        int sum = 0;
-        int tz = Convert.ToInt32(args.Value);
-        if ((tz <= 999999999)||  (tz >= 100000000))
-        {
-            
-            while (tz>1)
-            {
-                int i = 0;
-                tznum[i] = (tz % 10);
-                tz = tz / 10;
-                i++;
-            }
-            for (int i = 0; i < tznum.Length ; i++)
-            {
-                sum += tznum[i];    
-            }
-            if (sum % 7 == tznum[0])
-            {
-                args.IsValid = true;
-                
-            }
-            else
-            {
-                args.IsValid = false;
-                
-            }
-        }
+
+        //int[] tznum = new int[9];
+        //int sum = 0;
+        //int tz = Convert.ToInt32(args.Value);
+        //if (args.Value.Length == 9)
+        //{
+        //    args.IsValid = true;
+
+        //    //while (tz>1)
+        //    //{
+        //    //    int i = 0;
+        //    //    tznum[i] = (tz % 10);
+        //    //    tz = tz / 10;
+        //    //    i++;
+        //    //}
+        //    //for (int i = 0; i < tznum.Length ; i++)
+        //    //{
+        //    //    sum += tznum[i];    
+        //    //}
+        //    //if (sum % 7 == tznum[0])
+        //    //{
+        //    //    args.IsValid = true;
+
+        //    //}
+        //    //else
+        //    //{
+        //    //    args.IsValid = false;
+
+        //    //}
+        //}
+        //else
+        //{
+        //    args.IsValid = false;
+        //}    
+        //if (TB2.Text.Length!=9)
+        //{
+        //Cvalidator.ErrorMessage = "must enter 9 digits";
+        //    args.IsValid = false;
+        //}
+     //   args.IsValid = (args.Value.Length ==9);
 
     }
     protected void CHbPhone_CheckedChanged(object sender, EventArgs e)
     {
         ChBCredit.Checked = false;//only one can be checked
+        RequiredFieldValidator validator2 = new RequiredFieldValidator();
+
+       
+       
 
         if (CHbPhone.Checked == true)
         {
@@ -137,7 +181,12 @@ public partial class Payment : System.Web.UI.Page
         LBL1.Text = "Phone Number:";
         PH.Controls.Add(LBL1);
         TextBox TXB = new TextBox();
-           TXB.EnableViewState = false;
+        TXB.EnableViewState = false;
+            TXB.ID = "TXB";
+        validator2.ControlToValidate = "TXB";
+        validator2.ForeColor = System.Drawing.Color.Red;
+        validator2.Text = "Must Enter Phone Number";
+        PH.Controls.Add(validator2);
 
             PH.Controls.Add(TXB);
         }
@@ -148,4 +197,11 @@ public partial class Payment : System.Web.UI.Page
     }
 
 
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        
+
+        
+    }
 }
