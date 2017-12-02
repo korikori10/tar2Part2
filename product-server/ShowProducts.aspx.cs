@@ -11,6 +11,7 @@ public partial class ShowProducts : System.Web.UI.Page
     CheckBox cb;
     Product p = new Product();
     Category c = new Category();
+    Product1 pl = new Product1();
     List<Product> newList = new List<Product>();
     Product dp = new Product();
     int j = 0;
@@ -40,6 +41,13 @@ public partial class ShowProducts : System.Web.UI.Page
                     "</br> Product Name: " + item.Title.ToString() +
                     "</br> Product Category: " + item.category.Name +
                     "</br> Product Price: " + item.Price.ToString();
+                    cb = new CheckBox();
+                    cb.ID = item.Id.ToString();
+                    cb.CheckedChanged += new EventHandler(this.cb_CheckedChanged); //cb_CheckedChanged;
+                    if (item.Inventory == 0)
+                    {
+                        cb.Enabled = false;
+                    }
                     myDiv2.Controls.Add(img);
                     myDiv2.Controls.Add(l1);
                     discountPH.Controls.Add(myDiv2);
@@ -68,6 +76,13 @@ public partial class ShowProducts : System.Web.UI.Page
                     "</br> Product Name: " + item.Title.ToString() +
                     "</br> Product Category: " + item.category.Name +
                     "</br> Product Price: " + item.Price.ToString();
+                    cb = new CheckBox();
+                    cb.ID = item.Id.ToString();
+                    cb.CheckedChanged += new EventHandler(this.cb_CheckedChanged); //cb_CheckedChanged;
+                    if (item.Inventory == 0)
+                    {
+                        cb.Enabled = false;
+                    }
                     myDiv2.Controls.Add(img);
                     myDiv2.Controls.Add(l1);
                     discountPH.Controls.Add(myDiv2);
@@ -76,39 +91,40 @@ public partial class ShowProducts : System.Web.UI.Page
             }
 
         }
-            int i = 0;
-            foreach (var item in p.getProducts())
-            {
+        pl.listProducts(p.getProducts(),productsPH, false);
+            //int i = 0;
+            //foreach (var item in p.getProducts())
+            //{
 
 
-                HtmlGenericControl myDiv = new HtmlGenericControl("div");
-                myDiv.ID = "myDiv" + i;
-                myDiv.Attributes["class"] = "myClass";
+            //    HtmlGenericControl myDiv = new HtmlGenericControl("div");
+            //    myDiv.ID = "myDiv" + i;
+            //    myDiv.Attributes["class"] = "myClass";
 
-                Image img = new Image();
-                img.ImageUrl = item.ImagePath;
-                Label l1 = new Label();
-                l1.Text = "</br> Product Number: " + item.Id.ToString() +
-                "</br> Product Name: " + item.Title.ToString() +
-                "</br> Product Category: " + item.category.Name +
-                "</br> Product Price: " + item.Price.ToString() +
-                "</br> Product Invetory: " + item.Inventory.ToString();
-                cb = new CheckBox();
-                cb.ID = item.Id.ToString();
-                cb.CheckedChanged += new EventHandler(this.cb_CheckedChanged); //cb_CheckedChanged;
-                if (item.Inventory == 0)
-                {
-                    cb.Enabled = false;
-                }
+            //    Image img = new Image();
+            //    img.ImageUrl = item.ImagePath;
+            //    Label l1 = new Label();
+            //    l1.Text = "</br> Product Number: " + item.Id.ToString() +
+            //    "</br> Product Name: " + item.Title.ToString() +
+            //    "</br> Product Category: " + item.category.Name +
+            //    "</br> Product Price: " + item.Price.ToString() +
+            //    "</br> Product Invetory: " + item.Inventory.ToString();
+            //    cb = new CheckBox();
+            //    cb.ID = item.Id.ToString();
+            //    cb.CheckedChanged += new EventHandler(this.cb_CheckedChanged); //cb_CheckedChanged;
+            //    if (item.Inventory == 0)
+            //    {
+            //        cb.Enabled = false;
+            //    }
 
-                myDiv.Controls.Add(img);
-                myDiv.Controls.Add(l1);
-                myDiv.Controls.Add(cb);
-                productsPH.Controls.Add(myDiv);
-                i++;
+            //    myDiv.Controls.Add(img);
+            //    myDiv.Controls.Add(l1);
+            //    myDiv.Controls.Add(cb);
+            //    productsPH.Controls.Add(myDiv);
+            //    i++;
 
 
-            }
+            //}
 
 
     }
@@ -142,4 +158,42 @@ public partial class ShowProducts : System.Web.UI.Page
         Session["MyCart"] = newList;
         Response.Redirect("Cart.aspx");
     }
+    //public void listProducts(List<Product> pl)
+    //{
+    //    int i = 0;
+    //    foreach (var item in pl)
+    //    {
+
+
+    //        HtmlGenericControl myDiv = new HtmlGenericControl("div");
+    //        myDiv.ID = "myDiv" + i;
+    //        myDiv.Attributes["class"] = "myClass";
+
+    //        Image img = new Image();
+    //        img.ImageUrl = item.ImagePath;
+    //        Label l1 = new Label();
+    //        l1.Text = "</br> Product Number: " + item.Id.ToString() +
+    //        "</br> Product Name: " + item.Title.ToString() +
+    //        "</br> Product Category: " + item.category.Name +
+    //        "</br> Product Price: " + item.Price.ToString() +
+    //        "</br> Product Invetory: " + item.Inventory.ToString();
+    //        cb = new CheckBox();
+    //        cb.ID = item.Id.ToString();
+    //        cb.CheckedChanged += new EventHandler(this.cb_CheckedChanged); //cb_CheckedChanged;
+    //        if (item.Inventory == 0)
+    //        {
+    //            cb.Enabled = false;
+    //        }
+
+    //        myDiv.Controls.Add(img);
+    //        myDiv.Controls.Add(l1);
+    //        myDiv.Controls.Add(cb);
+    //        productsPH.Controls.Add(myDiv);
+    //        i++;
+
+
+//}
+
+//    }
 }
+

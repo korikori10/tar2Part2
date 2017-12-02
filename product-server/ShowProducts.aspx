@@ -19,9 +19,9 @@
      
   </asp:Content>
  <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-          <asp:PlaceHolder ID="discountPH" runat="server"></asp:PlaceHolder>
      <div id="discount">
          <asp:Label ID="discountlbl" runat="server" Text="Label"></asp:Label>
+          <asp:PlaceHolder ID="discountPH" runat="server"></asp:PlaceHolder>
      </div>
      
      <asp:PlaceHolder ID="productsPH" runat="server"></asp:PlaceHolder>
