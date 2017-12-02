@@ -200,8 +200,60 @@ public partial class Payment : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        
+        if (FileUpload1.HasFile)
+        {
+            SaveFile(FileUpload1.PostedFile);
+        }
 
         
+    }
+
+    private void SaveFile(HttpPostedFile file)
+    {
+        // Specify the path to save the uploaded file to.
+        string savePath = "C:\\Users\\Kori\\Documents\\GitHub\\tar2Part2\\product-server\\images";
+
+        // Get the name of the file to upload.
+        string fileName = FileUpload1.FileName;
+
+        // Create the path and file name to check for duplicates.
+        string pathToCheck = savePath + fileName;
+
+        // Create a temporary file name to use for checking duplicates.
+        string tempfileName = "";
+
+        // Check to see if a file already exists with the
+        // same name as the file to upload.        
+        if (System.IO.File.Exists(pathToCheck))
+        {
+            int counter = 2;
+            while (System.IO.File.Exists(pathToCheck))
+            {
+                // if a file with this name already exists,
+                // prefix the filename with a number.
+                tempfileName = counter.ToString() + fileName;
+                pathToCheck = savePath + tempfileName;
+                counter++;
+            }
+
+            fileName = tempfileName;
+
+            // Notify the user that the file name was changed.
+            UploadStatusLabel.Text = "A file with the same name already exists." +
+                "<br />Your file was saved as " + fileName;
+        }
+        else
+        {
+            // Notify the user that the file was saved successfully.
+            UploadStatusLabel.Text = "Your file was uploaded successfully.";
+        }
+
+        // Append the name of the file to upload to the path.
+        savePath += fileName;
+
+        // Call the SaveAs method to save the uploaded
+        // file to the specified directory.
+        FileUpload1.SaveAs(savePath);
+
     }
 }

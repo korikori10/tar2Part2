@@ -19,7 +19,11 @@
      
   </asp:Content>
  <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+          <asp:PlaceHolder ID="discountPH" runat="server"></asp:PlaceHolder>
+     <div id="discount">
+         <asp:Label ID="discountlbl" runat="server" Text="Label"></asp:Label>
+     </div>
+     
      <asp:PlaceHolder ID="productsPH" runat="server"></asp:PlaceHolder>
      
       <asp:Button ID="Button1"   runat="server" Text="Create List" OnClick="Button1_Click" />

@@ -18,8 +18,12 @@
        <br />
       Credit   <asp:CheckBox ID="ChBCredit" runat="server" AutoPostBack="true" EnableViewState="False"  ViewStateMode="Disabled" OnCheckedChanged="ChBCredit_CheckedChanged" />
       Phone   <asp:CheckBox ID="CHbPhone" runat="server" AutoPostBack="true" EnableViewState="False"  ViewStateMode="Disabled" OnCheckedChanged="CHbPhone_CheckedChanged" />
-         <asp:PlaceHolder ID="PH" runat="server"></asp:PlaceHolder>
+   
+     <asp:PlaceHolder ID="PH" runat="server"></asp:PlaceHolder>
 
         <asp:CustomValidator ID="CBV" runat="server" ErrorMessage="Must select 1"  ClientValidationFunction="CBV" > </asp:CustomValidator>
+     Upload Signiture Picture  <asp:FileUpload ID="FileUpload1"  runat="server"  />
+     <%--<requiredfieldvalidator ControlToValidate="FileUpload1" > </requiredfieldvalidator>--%>
+     <asp:Label ID="UploadStatusLabel" runat="server" Text=""></asp:Label>
         <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click"  />
      </asp:Content>

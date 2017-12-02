@@ -8,19 +8,19 @@ using System.Web;
 /// </summary>
 public class Product
 {
-	public Product()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    public Product()
+    {
+        //
+        // TODO: Add constructor logic here
+        //
+    }
 
     private int id;
 
     public int Id
     {
-      get { return id; }
-      set { id = value; }
+        get { return id; }
+        set { id = value; }
     }
 
     private string title;
@@ -68,7 +68,7 @@ public class Product
     }
 
 
-     public Product (int _categoryId, int _id, string _title, string _imagePath,  double _price, int _inventory, Dictionary<string,string> _attr)
+    public Product(int _categoryId, int _id, string _title, string _imagePath, double _price, int _inventory, Dictionary<string, string> _attr)
     {
         category.Id = _categoryId;
         Id = _id;
@@ -80,18 +80,18 @@ public class Product
 
     }
 
-     public Product getProduct(int productId)
-     {
-        
-         return null;
-     }
+    public Product getProduct(int productId)
+    {
+
+        return null;
+    }
     public List<Product> getProducts()
     {
         DBServices db = new DBServices();
 
         return db.getList();
-        
-        
+
+
     }
 
 }
