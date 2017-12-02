@@ -14,7 +14,7 @@ public partial class Cart : System.Web.UI.Page
         if (Session["MyCart"] != null)
         {
             List<Product> newList =  (List<Product>)(Session["MyCart"]);
-            Product1 p = new Product1();
+            ProductList p = new ProductList();
             double totalPrice = 0;
             p.listProducts(newList, cartPH, true);
             foreach (var item in newList)
