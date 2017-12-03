@@ -14,6 +14,7 @@ public class Product1
     string description;
     string price;
     string category;
+<<<<<<< HEAD
     List<Product> newList = new List<Product>();
     Product p = new Product();
     public Product1(string name, string price, string category, string description)
@@ -27,73 +28,31 @@ public class Product1
     }
 
     public void listProducts(List<Product> pl, PlaceHolder ph, bool cbst)
+=======
+    
+    public Product1(string name, string price, string category, string description)
+>>>>>>> 2780d9261174085923ed67cbf84294ed12d24728
     {
-        int i = 0;
-        foreach (var item in pl)
-        {
-
-
-            HtmlGenericControl myDiv = new HtmlGenericControl("div");
-            myDiv.ID = "myDiv" + i;
-            myDiv.Attributes["class"] = "myClass";
-
-            Image img = new Image();
-            img.ImageUrl = item.ImagePath;
-            Label l1 = new Label();
-            l1.Text = "</br> Product Number: " + item.Id.ToString() +
-            "</br> Product Name: " + item.Title.ToString() +
-            "</br> Product Category: " + item.category.Name +
-            "</br> Product Price: " + item.Price.ToString() +
-            "</br> Product Invetory: " + item.Inventory.ToString();
-            CheckBox cb = new CheckBox();
-            cb.ID = item.Id.ToString();
-            cb.CheckedChanged += new EventHandler(this.cb_CheckedChanged); //cb_CheckedChanged;
-            if (item.Inventory == 0)
-            {
-                cb.Enabled = cbst;
-            }
-
-            myDiv.Controls.Add(img);
-            myDiv.Controls.Add(l1);
-            myDiv.Controls.Add(cb);
-            ph.Controls.Add(myDiv);
-            i++;
-
-
-        }
+        this.name = name;
+        double P1 = (Convert.ToDouble(price)) * 1.17;
+        this.price = P1.ToString();
+        this.category = category;
+        this.description = description;
 
     }
 
-    private void cb_CheckedChanged(object sender, EventArgs e)
-    {
-        CheckBox Cbox = ((CheckBox)sender);
-        int cbid = Convert.ToInt32(Cbox.ID);
-        if (Cbox.Checked)
-        {
-            foreach (var item in p.getProducts())
-            {
-
-
-                if (cbid == item.Id)
-                {
-                    newList.Add(item);
-                }
-            }
-        }
-        else
-        {
-            foreach (var item in newList)
-            {
-                if (cbid == item.Id)
-                {
-                    newList.Remove(item);
-                }
-            }
-        }
-    }
+    
     public string GetInfo()
     {
 
         return "A new product got in! " + "<br />" + " Name: " + name + "<br />" + "Cost:" + price + " shekels" + "<br />" + "Under the category of:" + category + "<br />" + "Description: " + description + ".";
     }
+<<<<<<< HEAD
+    public string GetInfo()
+    {
+
+        return "A new product got in! " + "<br />" + " Name: " + name + "<br />" + "Cost:" + price + " shekels" + "<br />" + "Under the category of:" + category + "<br />" + "Description: " + description + ".";
+    }
+=======
+>>>>>>> 2780d9261174085923ed67cbf84294ed12d24728
 }

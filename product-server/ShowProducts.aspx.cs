@@ -11,7 +11,7 @@ public partial class ShowProducts : System.Web.UI.Page
     CheckBox cb;
     Product p = new Product();
     Category c = new Category();
-    Product1 pl = new Product1();
+    ProductList pl = new ProductList();
     List<Product> newList = new List<Product>();
     Product dp = new Product();
     int j = 0;
